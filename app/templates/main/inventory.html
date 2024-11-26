@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ title }}</h1>
+    {% if current_user.is_admin %}
+    <a href="{{ url_for('main.add_movement') }}" class="btn btn-primary mb-3">Добавить движение</a>
+    {% endif %}
+    
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Товар</th>
+                    <th>Склад</th>
+                    <th>Тип</th>
+                    <th>Количество</th>
+                    <th>Документ</th>
+                    <th>Создал</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movement in movements %}
+                <tr>
+                    <td>{{ movement.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                    <td>{{ movement.product.name }}</td>
+                    <td>{{ movement.warehouse.name }}</td>
+                    <td>
+                        {% if movement.movement_type == 'in' %}
+                        <span class="badge bg-success">Приход</span>
+                        {% elif movement.movement_type == 'out' %}
+                        <span class="badge bg-danger">Расход</span>
+                        {% else %}
+                        <span class="badge bg-info">Перемещение</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ movement.quantity }}</td>
+                    <td>{{ movement.reference }}</td>
+                    <td>{{ movement.created_by_user.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
