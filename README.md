@@ -1,6 +1,6 @@
 # Simple ERP System
 
-A simple ERP (Enterprise Resource Planning) system built with Python and Flask.
+A simple ERP (Enterprise Resource Planning) system built with Node.js and Express.
 
 ## Features
 
@@ -19,26 +19,26 @@ cd simple_erp
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+npm install
 ```
 
-3. Create admin user:
+3. Initialize the database:
 ```bash
-create_admin.bat
+node init_db.js
 ```
 
 4. Start the server:
 ```bash
-start_server.bat
+node server.js
 ```
 
-5. Access the application at http://127.0.0.1:8080
+5. Access the application at http://localhost:3001
 
 ## Development
 
-- Python 3.11+
-- Flask
-- SQLAlchemy
+- Node.js
+- Express
+- MongoDB
 - Bootstrap 5
 
 ## License
